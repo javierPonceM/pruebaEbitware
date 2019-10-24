@@ -1,49 +1,43 @@
 import Persona from './persona/persona';
-import * as readLine from 'readline';
+import { question, questionInt, questionFloat, prompt} from 'readline-sync';
+import * as readline from 'readline';
 class ObtenerDatos {
     persona: Persona;
-    private rl = readLine.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-        terminal: false
-    });
     constructor() {
         this.persona = new Persona();
     }
-
+    // rl = readline.createInterface({
+    //     input: process.stdin,
+    //     output: process.stdout,
+    //     terminal: false
+    // });
     /**
-     * metodo que pide nombre, edad, sexo, peso y altura de una persona
+     * metodos que piden nombre, edad, sexo, peso y altura de una persona mediante el teclado
      */
     getNombre() {
-        console.log('ingresa tu nombre: ');
-        this.rl.on('line', (line) => {
-            this.persona.setNombre = line;
-        });
+        let input = question('ingresa tu nombre: ');
+        this.persona.setNombre = input;
     }
     getEdad() {
-        console.log('ingresa tu edad: ');
-        this.rl.on('line', (line) => {
-            this.persona.setEdad = Number(line);
-        });
-
+        const input =  questionInt('ingresa tu edad?');
+        this.persona.setEdad = input;
+        // console.log('edad::::')
+        // this.rl.on('line',(input)=>{
+        //     console.log(input)
+        // });
+        // this.rl.close();
     }
     getSexo() {
-        console.log('¿Cuál es tu sexo?: ');
-        this.rl.on('line', (line) => {
-            this.persona.setSexo = line;
-        });
+        let input = question('¿Cuál es tu sexo? (H hombre, M mujer): ');
+        this.persona.setSexo = input;
     }
     getPeso() {
-        console.log('ingresa tu peso (en kg): ');
-        this.rl.on('line', (line) => {
-            this.persona.setPeso = Number(line);
-        });
+        let input = questionFloat('ingresa tu peso (en kg): ');
+        this.persona.setPeso = input;
     }
     getAltura() {
-        console.log('ingresa tu altura (en metros): ');
-        this.rl.on('line', (line) => {
-            this.persona.setAltura = Number(line);
-        });
+        let input = questionFloat('ingresa tu altura (en metros): ');
+        this.persona.setAltura = input;
     }
 
     setInfo(nombre: string, edad: number, sexo: string, altura: number, peso: number) {

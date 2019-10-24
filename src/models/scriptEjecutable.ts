@@ -3,7 +3,7 @@ import ObtenerDatos from './obtenerDatos';
 let sujeto1 = new ObtenerDatos();
 let sujeto2 = new ObtenerDatos();
 let sujeto3 = new ObtenerDatos();
-
+//TODO: resolver que al dar enter no registra el dato, pero al volver a escribir y presionar enter si lo hace
 sujeto1.getNombre();
 sujeto1.getEdad();
 sujeto1.getSexo();
@@ -27,3 +27,4 @@ console.log('el sujeto 3 es: ', sujeto3.statusEdad());
 console.log('La informacion de sujeto 1:', sujeto1.getAllInfo());
 console.log('La informacion de sujeto 2:', sujeto2.getAllInfo());
 console.log('La informacion de sujeto 3:', sujeto3.getAllInfo());
+process.exit();
