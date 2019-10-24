@@ -12,6 +12,6 @@ interface IPersona {
     comprobarSexo(sexo: Char): boolean;
     tostring(): string;
     generaNSS(): string;
-    getSexo(sexstring?:string):string;
+    getGender(sexstring?:string):string;
 };
 export default IPersona;

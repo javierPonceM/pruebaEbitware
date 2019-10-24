@@ -37,24 +37,40 @@ class Persona implements IPersona {
         this.nombre = nombre || '';
         this.edad = edad || 0;
         this.NSS = nss || this.generaNSS();
-        this.sexo = this.getSexo(sexo);
+        this.sexo = this.getGender(sexo);
         this.peso = peso || 0;
         this.altura = altura || 0;
     }
-    set setNombre(nombre:string){
-        this.nombre=nombre;
+    public set setNombre(nombre: string) {
+        this.nombre = nombre;
     }
-    set setEdad(edad:number){
-        this.edad=edad;
+    public set setEdad(edad: number) {
+        this.edad = edad;
     }
-    set setSexo(sexo:string){
-        this.sexo=sexo;
+    public set setSexo(sexo: string) {
+        this.sexo = sexo;
     }
-    set setPeso(peso:number){
-        this.peso=peso;
+    public set setPeso(peso: number) {
+        this.peso = peso;
     }
-    set setAltura(altura:number){
-        this.altura=altura;
+    public set setAltura(altura: number) {
+        this.altura = altura;
+    }
+
+    public get getNombre() {
+        return this.nombre;
+    }
+    public get getEdad() {
+        return this.edad;
+    }
+    public get getSexo() {
+        return this.sexo;
+    }
+    public get getPeso() {
+        return this.peso;
+    }
+    public get getAltura() {
+        return this.altura;
     }
 
     calcularImc(): number {
@@ -64,12 +80,12 @@ class Persona implements IPersona {
         else imc = 20;
         if (this.sexo === 'H') {
             if (imc > 25) return 1;
-            if (imc >= 20 && imc <= 25) return 0;
-            if (imc < 20) return -1;
+            else  if (imc >= 20 && imc <= 25) return 0;
+            else  return -1;
         } else {
             if (imc > 24) return 1;
-            if (imc >= 19 && imc <= 24) return 0;
-            if (imc < 19) return -1;
+            else if (imc >= 19 && imc <= 24) return 0;
+            else return -1;
         }
     }
 
@@ -105,11 +121,10 @@ class Persona implements IPersona {
                 nss = nss.concat(numeroRandom);
             }
         }
-        console.log(nss)
         return nss;
     }
-    getSexo(sexstring?: string): string {
-        const hombre:string='H', mujer:string='M';
+    getGender(sexstring?: string): string {
+        const hombre: string = 'H', mujer: string = 'M';
         if (sexstring) sexstring = sexstring.toLowerCase();
         if (sexstring === 'hombre' || sexstring === 'h') return hombre;
         if (sexstring === 'mujer' || sexstring === 'm') return mujer;
