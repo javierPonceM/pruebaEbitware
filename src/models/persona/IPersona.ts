@@ -1,16 +1,17 @@
 import Char from '../../config/types/charType';
 
 interface IPersona {
-    nombre: String;
-    edad: Number;
-    NSS: String;
-    sexo: Char;
-    peso: Number;
-    altura: Number;
-    calcularImc(peso: Number, altura: Number): Number;
-    esMayorDeEdad(edad: Number): Boolean;
-    comprobarSexo(sexo: Char): Boolean;
-    toString(): String;
-    generaNSS(): String;
+    nombre: string;
+    edad: number;
+    NSS: string;
+    sexo: string;
+    peso: number;
+    altura: number;
+    calcularImc(): number;
+    esMayorDeEdad(): boolean;
+    comprobarSexo(sexo: Char): boolean;
+    tostring(): string;
+    generaNSS(): string;
+    getSexo(sexstring?:string):string;
 };
 export default IPersona;
