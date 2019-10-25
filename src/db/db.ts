@@ -184,7 +184,7 @@ class DB {
     //pendiente
     async ventasPorPisoInferiorA5000(){
         let response;
-        let selectVentasPorPisoInfA5000=`select cajeros.cajero, cajeros.nomApels from cajeros 
+        let selectVentasPorPisoInfA5000=`select distinct(cajeros.cajero), cajeros.nomApels from cajeros 
         inner join venta on venta.cajero=cajeros.cajero
         inner join (
             select sum(subconsulta.importPproducPmaqui) as importeDeVenta,
