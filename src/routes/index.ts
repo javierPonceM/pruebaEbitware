@@ -1,5 +1,12 @@
 import express, { Request, Response, NextFunction } from "express";
-import { makeGet, makePost, makePut } from '../services/requestToServer'
+import { makeGet, makePost, makePut } from '../services/requestToServer';
+import { 
+  ventasPorProducto, 
+  reporteCompletoVentas, 
+  ventasPorPiso, 
+  ventasTotalesPorCajero, 
+  ventasPorPisoInferiorA5000 
+} from '../db/operations';
 const router = express.Router();
 
 router.get("/cliente/todos", async (req: Request, res: Response, next: NextFunction) => {
@@ -20,13 +27,29 @@ router.post("/cliente/nuevo", async (req: Request, res: Response, next: NextFunc
 router.put("/cliente/:numCliente", async (req: Request, res: Response, next: NextFunction) => {
   let response;
   let data = req.body;
-  let numCliente = req.params.numCliente
-  console.log(numCliente);
-
+  let numCliente = parseInt(req.params.numCliente);
   response = await makePut(data, numCliente);
   res.json(response);
 });
-
+//paths about db operations
+router.get("/ventasBy/producto", async (req: Request, res: Response, next: NextFunction) => {
+  let response = await ventasPorProducto();
+  res.send(response);
+});
+router.get("/ventasBy/reporteCompleto", async (req: Request, res: Response, next: NextFunction) => {
+  let response = await reporteCompletoVentas();
+  res.send(response);
+});
+router.get("/ventasBy/piso", async (req: Request, res: Response, next: NextFunction) => {
+  let response = await ventasPorPiso();
+  res.send(response);
+});
+router.get("/ventasBy/cajero", async (req: Request, res: Response, next: NextFunction) => {
+  let response = await ventasTotalesPorCajero();
+  res.send(response);
+});
+router.get("/ventasBy/piso/inferiores", async (req: Request, res: Response, next: NextFunction) => {
+  let response = await ventasPorPisoInferiorA5000();
+  res.send(response);
+});
 export default router;
-
-// { "Cliente_ID": 1, "Nombre_Usuario": "Juana", "Contraseña": "usnavy", "Nombre": "Usnavy Marina", "Apellidos": "Valencia", "Correo_Electronico": "juanaperez@hotmail.com", "Edad": 39, "Estatura": 1.8, "Peso": 60, "Genero_ID": 1, "Actividad_Fisica_ID": 1, "Dieta_ID": 4, "Objetivo_ID": 1, "IMC": 0, "GEB": 1500, "ETA": 0, "Peso_Maximo": 0, "Peso_Minimo": 0, "AF": 0, "Gasto_Energetico_Total": 0, "Tipo_Cliente_ID": 1, "Activo": true, "Orden": 0, "Fecha_Creacion": "2015-03-09T14:34:03", "Fecha_Actualizacion": "2016-05-13T16:49:00", "Usuario_ID": 2, "Visible": true, "De_Sistema": false }
