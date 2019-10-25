@@ -1,8 +1,26 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font-family: 'Anton', sans-serif;
+    font-family: 'Indie Flower', cursive;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+
+.formTitle {
+    font-size: 16pts;
+}
+
+input {
+    width: 30vw;
+}
+
+#recoverData {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+#tableClientes {
+    visibility: hidden;
 }

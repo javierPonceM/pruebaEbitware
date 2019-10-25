@@ -4,28 +4,26 @@ const router = express.Router();
 
 router.get("/cliente/todos", async (req: Request, res: Response, next: NextFunction) => {
   let response;
-  // {
-  //   "Nombre": "Juan",
-  //   "Apellidos": "Perez Hernandez",
-  //   "Nombre_Usuario": "Ju",
-  //   "Correo_Electronico": "jperez@hotmail.com",
-  //   "Contraseña": "juanitoperez"
-  //   }
   response = await makeGet();
   res.json(response);
 
 });
-router.post("/cliente/nuevo", (req: Request, res: Response, next: NextFunction) => {
+
+router.post("/cliente/nuevo", async (req: Request, res: Response, next: NextFunction) => {
   let response;
   let data = req.body;
-  response = makePost(data);
-  res.json(response);
+  response = await makePost(data);
+  console.log('post response', response);
+  res.status(200).send(response);
 });
-router.put("/cliente/:numCliente", (req: Request, res: Response, next: NextFunction) => {
+
+router.put("/cliente/:numCliente", async (req: Request, res: Response, next: NextFunction) => {
   let response;
   let data = req.body;
   let numCliente = req.params.numCliente
-  response = makePut(data, numCliente);
+  console.log(numCliente);
+
+  response = await makePut(data, numCliente);
   res.json(response);
 });
 

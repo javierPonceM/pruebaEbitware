@@ -1,12 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Prueba e-bitware</title>
+    <link rel="stylesheet" href="./css//style.css">
+    <!-- bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Indie+Flower&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-    <p>hola</p>
+    <div class="row">
+        <div class="col-sm-12">
+            <header>
+                <h1>Prueba para e-Bitware</h1>
+            </header>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="col-sm-12">
+                <div class="formTitle">agregar un nuevo usuario</div>
+                <form id="formPost">
+                    <div class="form-group">
+                        <label for="nombrePost">Ingrese su nombre:</label>
+                        <input type="text" class="form-control form-control-sm" id="nombrePost" name="nombrePost" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidosPost">Ingrese sus apellidos:</label>
+                        <input type="text" class="form-control form-control-sm" id="apellidosPost" name="apellidosPost">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombreUsrPost">Ingrese nombre de Usuario:</label>
+                        <input type="text" class="form-control form-control-sm" id="nombreUsrPost" name="nombreUsrPost" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailPost">Ingrese su e-mail:</label>
+                        <input type="email" class="form-control form-control-sm" id="emailPost" name="emailPost" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contrasenhaPost">Ingrese su contraseña:</label>
+                        <input type="password" class="form-control form-control-sm" id="contrasenhaPost" name="contrasenhaPost" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button id="recoverData" class="btn btn-primary">Recuperar Datos de Clientes</button>
+        </div>
+    </div>
+
+    <table id="tableClientes" class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>apellidos</th>
+            <th>usuario</th>
+            <th>edad</th>
+            <th>estatura</th>
+        </tr>
+    </table>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="./js/actions.js"></script>
 </body>
+
 </html>
