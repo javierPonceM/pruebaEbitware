@@ -20,7 +20,6 @@ router.post("/cliente/nuevo", async (req: Request, res: Response, next: NextFunc
   let response;
   let data = req.body;
   response = await makePost(data);
-  console.log('post response', response);
   res.status(200).send(response);
 });
 

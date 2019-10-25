@@ -78,6 +78,7 @@ class DB {
     }
 
     async fillTables() {
+        //solo cuatro producnto y cuatro cajeros y cuatro maquinas
         for (let i = 0; i < 5; i++) {
             let response1, response2, response3;
             let nombreProducto = `producto${i}`;
@@ -102,7 +103,7 @@ class DB {
 
         }
 
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < 100; i++) {
             let response4;
             let producto = Math.floor(Math.random() * 5);
             let cajero = Math.floor(Math.random() * 5);

@@ -1,16 +1,10 @@
 import Persona from './persona/persona';
 import { question, questionInt, questionFloat, prompt} from 'readline-sync';
-import * as readline from 'readline';
 class ObtenerDatos {
     persona: Persona;
     constructor() {
         this.persona = new Persona();
     }
-    // rl = readline.createInterface({
-    //     input: process.stdin,
-    //     output: process.stdout,
-    //     terminal: false
-    // });
     /**
      * metodos que piden nombre, edad, sexo, peso y altura de una persona mediante el teclado
      */
@@ -21,11 +15,6 @@ class ObtenerDatos {
     getEdad() {
         const input =  questionInt('ingresa tu edad?');
         this.persona.setEdad = input;
-        // console.log('edad::::')
-        // this.rl.on('line',(input)=>{
-        //     console.log(input)
-        // });
-        // this.rl.close();
     }
     getSexo() {
         let input = question('¿Cuál es tu sexo? (H hombre, M mujer): ');

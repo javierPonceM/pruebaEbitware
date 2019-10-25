@@ -1,5 +1,4 @@
 import IPersona from './IPersona';
-import Char from '../../config/types/charType';
 
 class Persona implements IPersona {
     private nombre: string;
@@ -93,7 +92,7 @@ class Persona implements IPersona {
         if (this.edad > 18) return true;
         else return false;
     }
-    private comprobarSexo(sexo: Char): boolean {
+    private comprobarSexo(sexo: string): boolean {
         let sex = this.sexo.toLowerCase();
         let conditionH: boolean = sex === 'h' || sex === 'hombre';
         let conditionM: boolean = sex === 'm' || sex === 'mujer';

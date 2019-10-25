@@ -25,14 +25,14 @@ window.onload = () => {
     let divResponse1 = document.getElementById('response1');
     formularioPost.addEventListener('submit', (e) => {
         e.preventDefault();
-        let data = {
+        let dataUser = {
             Nombre: nombrePost.value,
             Apellidos: apellidosPost.value,
             Nombre_Usuario: nombreUsrPost.value,
             Correo_Electronico: emailPost.value,
             Contraseña: contrasenhaaPost.value
         };
-        realizarPeticion(data, pathPost, 'POST', (err, response) => {
+        realizarPeticion(dataUser, pathPost, 'POST', (err, response) => {
             if (err) {
                 alert('something wrong with post request!');
             } else {
@@ -95,7 +95,7 @@ window.onload = () => {
             Peso: 60,
             GEB: 1500
         };
-        realizarPeticion(data, pathPut + noCliente, 'PUT', (err, response) => {
+        realizarPeticion(data, `${pathPut}${noCliente}`, 'PUT', (err, response) => {
             if (err) {
                 alert('something wrong with post request!');
             } else {
@@ -179,5 +179,6 @@ function realizarPeticion(data, path, metodo, callback) {
         }
     }
     xhr.open(metodo, url + path, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(data));
 }
