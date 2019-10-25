@@ -1,22 +1,19 @@
 body {
-    padding: 50px;
-    font-family: 'Anton', sans-serif;
-    font-family: 'Indie Flower', cursive;
-}
-
-a {
-    color: #00B7FF;
+    padding: 35px;
+    /* font-family: 'Anton', sans-serif;
+    font-family: 'Indie Flower', cursive; */
 }
 
 .formTitle {
-    font-size: 16pts;
+    font-size: 20pts;
 }
 
 input {
-    width: 30vw;
+    width: 10vw;
 }
 
-#recoverData {
+#recoverData,
+#updateInfoUser {
     margin-top: 3vh;
     margin-bottom: 3vh;
 }

@@ -1,6 +1,7 @@
 window.onload = () => {
     let pathPost = '/api/cliente/nuevo';
     let pathGet = '/api/cliente/todos';
+    let pathPut = '/api/cliente/';
     let formularioPost = document.getElementById('formPost');
     let nombrePost = document.getElementById('nombrePost');
     let apellidosPost = document.getElementById('apellidosPost');
@@ -9,7 +10,7 @@ window.onload = () => {
     let contrasenhaaPost = document.getElementById('contrasenhaPost');
     let buttonGetAllClients = document.getElementById('recoverData');
     let tableClientes = document.getElementById('tableClientes');
-
+    let buttonActualizarDatos = document.getElementById('updateInfoUser');
     formularioPost.addEventListener('submit', (e) => {
         e.preventDefault();
         let data = {
@@ -24,7 +25,7 @@ window.onload = () => {
                 alert('something wrong with post request!');
             } else {
 
-                alert(response[0].Cve_Mensaje);
+                alert(`Clave: ${response[0].Cve_Mensaje} \n Mensaje: ${response[0].Mensaje}`);
                 formularioPost.value = "";
                 nombrePost.value = "";
                 apellidosPost.value = "";
@@ -73,6 +74,23 @@ window.onload = () => {
         });
         tableClientes.style.visibility = 'visible';
     }
+
+    buttonActualizarDatos.addEventListener('click', (e) => {
+        let noCliente = 59;
+        let data = {
+            Edad: 39,
+            Estatura: 1.80,
+            Peso: 60,
+            GEB: 1500
+        };
+        realizarPeticion(data, pathPut + noCliente, 'PUT', (err, response) => {
+            if (err) {
+                alert('something wrong with post request!');
+            } else {
+                alert(`Clave: ${response[0].Cve_Mensaje} \n Mensaje: ${response[0].Mensaje}`);
+            }
+        });
+    });
 
 }
 
