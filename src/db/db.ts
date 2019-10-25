@@ -163,11 +163,15 @@ class DB {
 //pendiente
     async ventasTotalesPorCajero(){
         let response;
-        let selectVentasTotPorCajero=`select venta.cajero,cajeros.nomApels as nombre,
-        venta.producto as produc_vendido,  productos.precio from venta 
-        inner join productos on venta.producto=productos.Producto
-        inner join cajeros on cajeros.cajero = venta.cajero
-        order by venta.cajero;`;
+        let selectVentasTotPorCajero=`select cajeros.cajero, cajeros.nomApels, sum(subconsulta.precio) as TotalVendido from 
+        (
+        select productos.precio, venta.producto, venta.cajero from venta
+        inner join productos on productos.producto=venta.producto
+        order by cajero
+        ) as subconsulta
+        inner join cajeros on cajeros.cajero = subconsulta.cajero
+        group by subconsulta.cajero
+        ;`;
         try {
             response = await this.makeQuery(selectVentasTotPorCajero, []);
             return response;
@@ -179,11 +183,25 @@ class DB {
     //pendiente
     async ventasPorPisoInferiorA5000(){
         let response;
-        let selectVentasPorPisoInfA5000=`select cajeros.cajero, cajeros.nomapels, count(venta.producto),count(venta.producto)*productos.precio as ventaTotal from cajeros
-        inner join venta on cajeros.cajero=venta.cajero
-        inner join productos on venta.producto=productos.producto
-        group by venta.cajero
-        order by cajeros.cajero asc
+        let selectVentasPorPisoInfA5000=`select cajeros.cajero, cajeros.nomApels from cajeros 
+        inner join venta on venta.cajero=cajeros.cajero
+        inner join (
+            select sum(subconsulta.importPproducPmaqui) as importeDeVenta,
+            maquinas_registradoras.piso, maquinas_registradoras.Maquina from 
+            (
+                select count(venta.producto),
+                    count(venta.producto)*productos.precio as importPproducPmaqui,
+            venta.Producto, venta.Maquina
+                from venta
+                inner join productos on productos.producto=venta.producto
+                group by venta.Maquina,venta.Producto
+                order by venta.Maquina
+            ) as subconsulta
+            inner join maquinas_registradoras on maquinas_registradoras.maquina=subconsulta.maquina
+            group by subconsulta.maquina
+        ) as  subconsulta2
+        on subconsulta2.maquina=venta.maquina
+        where subconsulta2.importeDeVenta<5000
         ;`;
         try {
             response = await this.makeQuery(selectVentasPorPisoInfA5000, []);
