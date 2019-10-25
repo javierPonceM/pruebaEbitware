@@ -163,12 +163,11 @@ class DB {
 //pendiente
     async ventasTotalesPorCajero(){
         let response;
-        let selectVentasTotPorCajero=`select cajeros.cajero, cajeros.nomapels, count(venta.producto),count(venta.producto)*productos.precio as ventaTotal from cajeros
-        inner join venta on cajeros.cajero=venta.cajero
-        inner join productos on venta.producto=productos.producto
-        group by venta.cajero
-        order by cajeros.cajero asc
-        ;`;
+        let selectVentasTotPorCajero=`select venta.cajero,cajeros.nomApels as nombre,
+        venta.producto as produc_vendido,  productos.precio from venta 
+        inner join productos on venta.producto=productos.Producto
+        inner join cajeros on cajeros.cajero = venta.cajero
+        order by venta.cajero;`;
         try {
             response = await this.makeQuery(selectVentasTotPorCajero, []);
             return response;

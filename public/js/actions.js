@@ -2,6 +2,12 @@ window.onload = () => {
     let pathPost = '/api/cliente/nuevo';
     let pathGet = '/api/cliente/todos';
     let pathPut = '/api/cliente/';
+    let pathQuery1 = '/api/ventasBy/producto';
+    let pathQuery2 = '/api/ventasBy/reporteCompleto';
+    let pathQuery3 = '/api/ventasBy/piso';
+    let pathQuery4 = '/api/ventasBy/cajero';
+    let pathQuery5 = '/api/ventasBy/piso/inferiores';
+
     let formularioPost = document.getElementById('formPost');
     let nombrePost = document.getElementById('nombrePost');
     let apellidosPost = document.getElementById('apellidosPost');
@@ -11,6 +17,12 @@ window.onload = () => {
     let buttonGetAllClients = document.getElementById('recoverData');
     let tableClientes = document.getElementById('tableClientes');
     let buttonActualizarDatos = document.getElementById('updateInfoUser');
+    let ventasPorProducto = document.getElementById('ventasPorProducto');
+    let reporteCompletoVentas = document.getElementById('reporteCompletoVentas');
+    let ventasPorPiso = document.getElementById('ventasPorPiso');
+    let ventasTotalesPorCajero = document.getElementById('ventasTotalesPorCajero');
+    let ventasPorPisoInferiorA5000 = document.getElementById('ventasPorPisoInferiorA5000');
+    let divResponse1 = document.getElementById('response1');
     formularioPost.addEventListener('submit', (e) => {
         e.preventDefault();
         let data = {
@@ -88,6 +100,63 @@ window.onload = () => {
                 alert('something wrong with post request!');
             } else {
                 alert(`Clave: ${response[0].Cve_Mensaje} \n Mensaje: ${response[0].Mensaje}`);
+            }
+        });
+    });
+
+
+    ventasPorProducto.addEventListener('click', (e) => {
+        realizarPeticion({}, pathQuery1, 'GET', (err, response) => {
+            if (err) {
+                console.log(err);
+                alert('something wrong with the server');
+            } else {
+                divResponse1.innerText = '';
+                divResponse1.innerText = JSON.stringify(response);
+            }
+        });
+    });
+    reporteCompletoVentas.addEventListener('click', (e) => {
+        realizarPeticion({}, pathQuery2, 'GET', (err, response) => {
+            if (err) {
+                console.log(err);
+                alert('something wrong with the server');
+            } else {
+                divResponse1.innerText = '';
+                divResponse1.innerText = JSON.stringify(response);
+            }
+        });
+    });
+    ventasPorPiso.addEventListener('click', (e) => {
+        realizarPeticion({}, pathQuery3, 'GET', (err, response) => {
+            if (err) {
+                console.log(err);
+                alert('something wrong with the server');
+            } else {
+                divResponse1.innerText = '';
+                divResponse1.innerText = JSON.stringify(response);
+            }
+        });
+    });
+    ventasTotalesPorCajero.addEventListener('click', (e) => {
+        realizarPeticion({}, pathQuery4, 'GET', (err, response) => {
+            if (err) {
+                console.log(err);
+                alert('something wrong with the server');
+            } else {
+                divResponse1.innerText = '';
+                divResponse1.innerText = JSON.stringify(response);
+            }
+        });
+    });
+    ventasPorPisoInferiorA5000.addEventListener('click', (e) => {
+        realizarPeticion({}, pathQuery5, 'GET', (err, response) => {
+            if (err) {
+                console.log(err);
+                alert('something wrong with the server');
+            } else {
+                divResponse1.innerText = '';
+                divResponse1.innerText = JSON.stringify(response);
             }
         });
     });
